@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import InfoContent from "../components/MainPage/IntroContent";
 
 function Main() {
-  return (
-    <div>Main</div>
-  )
+    return (
+        <div>
+            <InfoContent></InfoContent>
+        </div>
+    );
 }
 
-export default Main
+export default Main;

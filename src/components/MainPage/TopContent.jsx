@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function TopContent() {
-  return (
-    <div>TopContent</div>
-  )
+  return <div>TopContentasdsadas</div>;
 }
 
-export default TopContent
+export default TopContent;

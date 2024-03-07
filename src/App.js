@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <Main /> },
             { path: "/mypick", element: <MyPick /> },
-            { path: "/watch/:title", element: <Watch /> },
+            { path: "/watch/:id", element: <Watch /> },
         ],
     },
 ]);

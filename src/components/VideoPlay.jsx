@@ -1,7 +1,24 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import useSearchVideo from "../hooks/useSearchVideo";
 
-function VideoPlay({ title }) {
+function VideoPlay({ title, videoPath }) {
+    const pathState = useSearchVideo(title);
+    const youtubePath = videoPath || pathState;
+
+    return (
+        <div>
+            {youtubePath && (
+                <iframe
+                    frameBorder="0"
+                    src={`https://www.youtube.com/embed/${youtubePath}?controls=0&autoplay=1&loop=1&mute=1&playlist=${youtubePath}`}
+                ></iframe>
+            )}
+        </div>
+    );
+}
+
+export default VideoPlay;
+/*
     const [youtubePath, setYoutubePath] = useState("");
 
     const searchData = async () => {
@@ -35,18 +52,5 @@ function VideoPlay({ title }) {
     useEffect(() => {
         searchData();
         console.log(youtubePath);
-    }, []);
-
-    return (
-        <div>
-            {youtubePath && (
-                <iframe
-                    frameBorder="0"
-                    src={`https://www.youtube.com/embed/${youtubePath}?controls=0&autoplay=1&loop=1&mute=1&playlist=${youtubePath}`}
-                ></iframe>
-            )}
-        </div>
-    );
-}
-
-export default VideoPlay;
+    }, []
+    */

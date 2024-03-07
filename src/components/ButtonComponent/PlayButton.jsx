@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IoIosPlay } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PlayBtnStyle = styled(IoIosPlay)`
     width: ${(props) => (props.btnSize ? props.btnSize : "2rem")};
@@ -36,9 +36,19 @@ function PlayButton({
     colorCode,
     hoverBackColor,
     hoverColor,
+    title,
+    imgPath,
 }) {
+    const navigate = useNavigate();
+
+    const handleNavigatePlay = () => {
+        navigate(`/watch/:id`, {
+            state: { title: title, imgPath: imgPath },
+        });
+    };
+
     return (
-        <Link to="">
+        <div onClick={(title) => handleNavigatePlay()}>
             <PlayBtnStyle
                 btnSize={btnSize}
                 fontSize={fontSize}
@@ -47,7 +57,7 @@ function PlayButton({
                 hoverBackColor={hoverBackColor}
                 hoverColor={hoverColor}
             ></PlayBtnStyle>
-        </Link>
+        </div>
     );
 }
 

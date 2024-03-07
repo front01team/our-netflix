@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Content from "../components/MainPage/Content";
 import ContentList from "../components/MainPage/ContentList";
-import VideoPlay from "../components/VideoPlay";
-
-import PlayButton from "../components/ButtonComponent/PlayButton";
-import PickButton from "../components/ButtonComponent/PickButton";
-import LikeButton from "../components/ButtonComponent/LikeButton";
-import ArrowButton from "../components/ButtonComponent/ArrowButton";
 import Featured from "../components/MainPage/Featured";
 import TopContent from "../components/MainPage/TopContent";
-
-import useSearchVideo from "../hooks/useSearchVideo";
+import styled from "styled-components";
 
 const mainData = {
     name: "싱글 인 서울",
@@ -65,6 +57,13 @@ const mainData = {
     ],
 };
 
+const ContentListBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+`;
 function Main() {
     const [isPicked, setIsPicked] = useState(true);
     const handleClick = () => {
@@ -81,23 +80,22 @@ function Main() {
 
     contentData && console.log(contentData);
 
-    const youtubePath = useSearchVideo("듄");
-    console.log("Path", youtubePath);
-
     return (
         <div>
             <Featured mainData={mainData} youtubePath={"_m9lzh0vgQE"} />
-            <TopContent />
-            {contentData &&
-                contentData.map(
-                    (series, index) =>
-                        series && (
-                            <ContentList
-                                series={series}
-                                key={`${series.category}-${index}`}
-                            />
-                        )
-                )}
+            <ContentListBox>
+                <TopContent />
+                {contentData &&
+                    contentData.map(
+                        (series, index) =>
+                            series && (
+                                <ContentList
+                                    series={series}
+                                    key={`${series.category}-${index}`}
+                                />
+                            )
+                    )}
+            </ContentListBox>
         </div>
     );
 }

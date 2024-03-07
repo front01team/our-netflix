@@ -7,23 +7,8 @@ import PickButton from "../ButtonComponent/PickButton";
 import PlayButton from "../ButtonComponent/PlayButton";
 import ModalMain from "../Modal/ModalMain";
 import VideoPlay from "../VideoPlay";
-import styled from "styled-components";
 import Modal from "../Modal/Modal";
-
-const ModalContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 20;
-`;
-
-const ModalMask = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-`;
+import { useNavigate } from "react-router-dom";
 
 function Content({ allData, index }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -42,8 +27,16 @@ function Content({ allData, index }) {
         }
     }, [isModalOpen]);
 
+    const navigate = useNavigate();
+
+    const handleNavigatePlay = () => {
+        navigate(`/watch/:id`, {
+            state: { title: allData?.name, imgPath: allData?.poster },
+        });
+    };
+
     return (
-        <div>
+        <div onClick={handleNavigatePlay}>
             <div
                 className="content-Item"
                 style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
@@ -56,7 +49,10 @@ function Content({ allData, index }) {
                         <VideoPlay title={allData?.name} />
                         <div className="item-info">
                             <div className="icons">
-                                <PlayButton />
+                                <PlayButton
+                                    title={allData?.name}
+                                    imgPath={allData?.poster}
+                                />
                                 <PickButton />
                                 <LikeButton />
                                 <ArrowButton setIsModalOpen={setIsModalOpen} />

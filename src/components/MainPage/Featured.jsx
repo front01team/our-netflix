@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa6";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedStyled = styled.div`
     height: 90vh;
     position: relative;
     margin-bottom: 110px;
+
+    margin-top: 30px;
 
     iframe {
         width: 100%;
@@ -85,10 +88,19 @@ const Buttons = styled.div`
 `;
 
 const Featured = ({ mainData, youtubePath }) => {
+    const imgPath =
+        "https://occ-0-8133-395.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSf-PzQJ-CcB9AuuTSUMbeKn99_tPHEJYBHfSwKvNMOlmaZn8ueOi1B4-jbbbuUxG_S77q4A0GHnVZgIGeF_wxkCP7O93e9u0Kq5.webp?r=dad";
+    const navigate = useNavigate();
+
+    const handleNavigatePlay = () => {
+        navigate(`/watch/:id`, {
+            state: { title: "싱글 인 서울", imgPath: imgPath },
+        });
+    };
     return (
         <FeaturedStyled>
             {/* <img
-                src="https://occ-0-8133-395.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSf-PzQJ-CcB9AuuTSUMbeKn99_tPHEJYBHfSwKvNMOlmaZn8ueOi1B4-jbbbuUxG_S77q4A0GHnVZgIGeF_wxkCP7O93e9u0Kq5.webp?r=dad"
+                src={imgPath}
                 style={{ filter: "brightness(70%)" }}
                 alt=""
             /> */}
@@ -104,7 +116,10 @@ const Featured = ({ mainData, youtubePath }) => {
                 <span className="raked-text">오늘 영화 순위 3위</span>
                 <span className="desc">{mainData.description.slice(3)}</span>
                 <Buttons>
-                    <button className="play">
+                    <button
+                        className="play"
+                        onClick={(title) => handleNavigatePlay()}
+                    >
                         <FaPlay size={24} />
                         <span>재생</span>
                     </button>

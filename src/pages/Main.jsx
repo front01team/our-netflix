@@ -8,6 +8,10 @@ import PlayButton from "../components/ButtonComponent/PlayButton";
 import PickButton from "../components/ButtonComponent/PickButton";
 import LikeButton from "../components/ButtonComponent/LikeButton";
 import ArrowButton from "../components/ButtonComponent/ArrowButton";
+import React from "react";
+import Featured from "../components/MainPage/Featured";
+import ContentList from "../components/MainPage/ContentList";
+import TopContent from "../components/MainPage/TopContent";
 
 function Main() {
     const [isPicked, setIsPicked] = useState(true);
@@ -17,6 +21,11 @@ function Main() {
 
     return (
         <div style={{ backgroundColor: "black" }}>
+      <Featured />
+      <TopContent />
+      <ContentList />
+      <ContentList />
+      <ContentList />
             <InfoContent></InfoContent>
             <VideoPlay title={"듄"}></VideoPlay>
 
@@ -24,6 +33,7 @@ function Main() {
             <PlayButton />
             <LikeButton />
             <ArrowButton />
+              
         </div>
     );
 }

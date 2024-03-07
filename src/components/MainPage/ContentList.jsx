@@ -67,6 +67,5 @@ function ContentList() {
       </div>
     </div>
   );
-}
 
 export default ContentList;

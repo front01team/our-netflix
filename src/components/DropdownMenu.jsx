@@ -1,159 +1,120 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import useDetectClose from "./hooks/useDetectClose";
-import { MdArrowDropDown } from "react-icons/md";
-import { PiPencilDuotone } from "react-icons/pi";
+import { FaPlay } from "react-icons/fa6";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
-const ProfileImg = styled.img`
-  /* 프로필 이미지 스타일 */
-  width: 35px;
-  height: 35px;
-  border-radius: 3px;
-  cursor: pointer;
-  &:hover + div {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 0);
-    left: 50%;
+const FeaturedStyled = styled.div`
+  height: 90vh;
+  position: relative;
+  margin-bottom: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
-const StyledArrow = styled(MdArrowDropDown)`
-  /* 프로필 화살표 스타일 */
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #ffffff;
-  padding-bottom: 7px;
-  cursor: pointer;
-  &:hover + div {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, 0);
-    left: 50%;
-  }
-`;
-
-const Menu = styled.div`
-  background: gray;
+const Info = styled.div`
+  width: 35%;
   position: absolute;
-  top: 52px;
-  left: 50%;
-  width: 230px;
-  text-align: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  opacity: ${(props) => (props.profileIsOpen ? 1 : 0)};
-  visibility: ${(props) => (props.profileIsOpen ? "visible" : "hidden")};
-  transform: translate(-95%, 0);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  z-index: 9;
-
-  &:hover {
-    transform: translate(-95%, 0);
-  }
-
-  &:after {
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 12px solid transparent;
-    border-top-width: 0;
-    border-bottom-color: gray;
-  }
-`;
-
-const Ul = styled.ul`
-  & > li {
-    margin-bottom: 10px;
-  }
-
-  & > li:first-of-type {
-    margin-top: 10px;
-  }
-
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  left: 50px;
+  bottom: 270px;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+
+  img {
+    width: 400px;
+    padding-bottom: 30px;
+  }
+
+  .raked-text {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
+
+  .desc {
+    margin: 20px 0px;
+    color: #fff;
+    font-size: 1.2vw;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 0.1vw;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+  }
 `;
 
-const Li = styled.li``;
+const Buttons = styled.div`
+  display: flex;
 
-const LinkWrapper = styled.a`
-  font-size: 15px;
-  text-decoration: none;
-  color: white;
+  button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .play {
+    background-color: white;
+    color: black;
+
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+
+  .more {
+    background-color: gray;
+    color: white;
+
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+
+  span {
+    margin-left: 5px;
+  }
 `;
 
-const StyledPencil = styled(PiPencilDuotone)`
-  font-size: 20px;
-`;
-
-const DropdownMenu = () => {
-  const [profileIsOpen, profileRef, profileHandler] = useDetectClose(false);
-
+const Featured = () => {
   return (
-    <Wrapper>
-      <DropdownContainer
-        ref={profileRef}
-        onMouseLeave={() => profileHandler(false)}
-      >
-        <ProfileImg
-          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png?20201013161117"
-          alt="프로필사진"
-          onMouseEnter={() => profileHandler(true)}
+    <FeaturedStyled>
+      <img
+        src="https://occ-0-8133-395.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABSf-PzQJ-CcB9AuuTSUMbeKn99_tPHEJYBHfSwKvNMOlmaZn8ueOi1B4-jbbbuUxG_S77q4A0GHnVZgIGeF_wxkCP7O93e9u0Kq5.webp?r=dad"
+        style={{ filter: "brightness(70%)" }}
+        alt=""
+      />
+      <Info>
+        <img
+          src="https://occ-0-8133-395.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABXCWQ4AndXD_b5nxIHpoMMGCk-TEU9W6vAtgGfGXDGh1_Dn_NbirH6HARYOhMhfQHW3H31PtoLl9BQwhGNIMnIk6XMRGP0vUOh0iTRYsL9U.webp?r=1fc"
+          alt=""
         />
-        <StyledArrow />
-        <Menu $profileIsOpen={profileIsOpen}>
-          <Ul>
-            <Li>
-              <LinkWrapper href="#1-1">키즈</LinkWrapper>
-            </Li>
-            <Li>
-              <LinkWrapper href="#1-2">
-                <StyledPencil />
-                프로필관리
-              </LinkWrapper>
-            </Li>
-            <Li>
-              <LinkWrapper href="#1-3">프로필이전</LinkWrapper>
-            </Li>
-            <Li>
-              <LinkWrapper href="#1-4">계정</LinkWrapper>
-            </Li>
-            <Li>
-              <LinkWrapper href="#1-5">고객센터</LinkWrapper>
-            </Li>
-            <Li>
-              <LinkWrapper href="#1-1">넷플릭스에서 로그아웃</LinkWrapper>
-            </Li>
-          </Ul>
-        </Menu>
-      </DropdownContainer>
-    </Wrapper>
+        <span className="raked-text">오늘 영화 순위 3위</span>
+        <span className="desc">
+          싱글 라이프에 관한 책을 함께 만들게 된 두 사람. 혼자 사는 삶에 대해
+          정반대의 가치관을 가진 그들이 어느덧 서로에게 끌리기 시작한다.
+        </span>
+        <Buttons>
+          <button className="play">
+            <FaPlay size={24} />
+            <span>재생</span>
+          </button>
+          <button className="more">
+            <IoIosInformationCircleOutline size={30} />
+            <span>상세 정보</span>
+          </button>
+        </Buttons>
+      </Info>
+    </FeaturedStyled>
   );
 };
 
-export default DropdownMenu;
-
-const Wrapper = styled.div`
-  padding: 0 10px 0 10px;
-  vertical-align: middle;
-  display: inline-block;
-  flex-basis: auto;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const DropdownContainer = styled.div`
-  position: relative;
-  text-align: center;
-`;
+export default Featured;

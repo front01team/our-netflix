@@ -46,6 +46,6 @@ function Content({ index }) {
       )}
     </div>
   );
-
+}
 
 export default Content;

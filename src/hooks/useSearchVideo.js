@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 
-function VideoPlay({ title }) {
+function useSearchVideo(initialForm) {
     const [youtubePath, setYoutubePath] = useState("");
+    const title = initialForm;
 
     const searchData = async () => {
         const options = {
@@ -37,16 +37,7 @@ function VideoPlay({ title }) {
         console.log(youtubePath);
     }, []);
 
-    return (
-        <div>
-            {youtubePath && (
-                <iframe
-                    frameBorder="0"
-                    src={`https://www.youtube.com/embed/${youtubePath}?controls=0&autoplay=1&loop=1&mute=1&playlist=${youtubePath}`}
-                ></iframe>
-            )}
-        </div>
-    );
+    return youtubePath;
 }
 
-export default VideoPlay;
+export default useSearchVideo;

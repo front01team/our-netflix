@@ -4,6 +4,7 @@ import MyPick from "./pages/MyPick";
 import Error from "./pages/Error";
 import Main from "./pages/Main";
 import Home from "./pages/Home";
+import Watch from "./pages/Watch";
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <Main /> },
             { path: "/mypick", element: <MyPick /> },
+            { path: "/watch/:title", element: <Watch /> },
         ],
     },
 ]);

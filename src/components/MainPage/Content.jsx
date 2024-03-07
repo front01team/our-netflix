@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./content.css";
 import ArrowButton from "../ButtonComponent/ArrowButton";
 import LikeButton from "../ButtonComponent/LikeButton";
@@ -8,7 +8,7 @@ import PlayButton from "../ButtonComponent/PlayButton";
 import ModalMain from "../Modal/ModalMain";
 import VideoPlay from "../VideoPlay";
 import styled from "styled-components";
-import ReactDOM from "react-dom";
+import Modal from "../Modal/Modal";
 
 const ModalContainer = styled.div`
     width: 100%;
@@ -16,6 +16,7 @@ const ModalContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 20;
 `;
 
 const ModalMask = styled.div`
@@ -26,13 +27,20 @@ const ModalMask = styled.div`
 
 function Content({ allData, index }) {
     const [isHovered, setIsHovered] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleOpenModal = () => {
-        setOpenModal(true);
-    };
+    const tagText = allData?.movie_info.slice(-1)[0].split(": ").slice(1);
+    // const handleModal = () => {
+    //     setIsModalOpen(true);
+    // };
 
-    const tagText = allData.movie_info.slice(-1)[0].split(": ").slice(1);
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [isModalOpen]);
 
     return (
         <div>
@@ -42,52 +50,31 @@ function Content({ allData, index }) {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <img src={allData.poster} alt="poster" />
+                <img src={allData?.poster} alt="poster" />
                 {isHovered && (
                     <div>
-                        <VideoPlay title={allData.name} />
+                        <VideoPlay title={allData?.name} />
                         <div className="item-info">
                             <div className="icons">
                                 <PlayButton />
                                 <PickButton />
                                 <LikeButton />
-                                <ArrowButton
-                                    openModal={openModal}
-                                    handleOpenModal={handleOpenModal}
-                                    className="icon"
-                                />
+                                <ArrowButton setIsModalOpen={setIsModalOpen} />
                             </div>
                             <div className="item-info-top">
-                                <span>{allData.episode_detail[0].ep_time}</span>
+                                <span>
+                                    {allData?.episode_detail[0].ep_time}
+                                </span>
                                 <span className="limit">+15</span>
-                                <span>{allData.year}</span>
+                                <span>{allData?.year}</span>
                             </div>
                             <div className="desc">{tagText}</div>
                         </div>
                     </div>
                 )}
-
-                {ReactDOM.createPortal(
-                    <Backdrop modalHandler={modalHandler} />,
-                    document.getElementById("backdrop")
+                {isModalOpen && (
+                    <Modal setIsModalOpen={setIsModalOpen} allData={allData} />
                 )}
-                {ReactDOM.createPortal(
-                    <Overlay modalHandler={modalHandler} />,
-                    document.getElementById("overlay")
-                )}
-
-                {/* <div>
-                    {openModal &&
-                        createPortal(
-                            <ModalContainer onClose={() => setOpenModal(false)}>
-                                <ModalMask
-                                    onClick={() => setOpenModal(false)}
-                                />
-                                <ModalMain allData={allData} />
-                            </ModalContainer>,
-                            document.body
-                        )}
-                </div> */}
             </div>
         </div>
     );
@@ -95,12 +82,17 @@ function Content({ allData, index }) {
 
 export default Content;
 
-const Backdrop = ({ modalHandler }) => {
-    return (
-        <PortalBackdrop onClick={() => modalHandler(false)}></PortalBackdrop>
-    );
-};
-
-const Overlay = ({ modalHandler }) => {
-    return <PortalOverlay>포탈에 사용할 내용</PortalOverlay>;
-};
+{
+    /* <div>
+    {openModal &&
+        createPortal(
+            <ModalContainer onClose={() => setOpenModal(false)}>
+                <ModalMask
+                    onClick={() => setOpenModal(false)}
+                />
+                <ModalMain allData={allData} />
+            </ModalContainer>,
+            document.body
+        )}
+</div> */
+}

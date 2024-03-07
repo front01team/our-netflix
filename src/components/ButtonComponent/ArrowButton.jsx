@@ -33,11 +33,10 @@ function ArrowButton({
     colorCode,
     hoverBackColor,
     hoverColor,
-    openModal,
-    handleOpenModal,
+    setIsModalOpen,
 }) {
     return (
-        <div onClick={handleOpenModal}>
+        <div onClick={() => setIsModalOpen(true)}>
             <ArrowBtnStyle
                 btnSize={btnSize}
                 fontSize={fontSize}

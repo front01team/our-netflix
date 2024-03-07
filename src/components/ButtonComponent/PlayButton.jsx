@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IoIosPlay } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const PlayBtnStyle = styled(IoIosPlay)`
     width: ${(props) => (props.btnSize ? props.btnSize : "2rem")};
@@ -37,14 +38,16 @@ function PlayButton({
     hoverColor,
 }) {
     return (
-        <PlayBtnStyle
-            btnSize={btnSize}
-            fontSize={fontSize}
-            paddingSize={paddingSize}
-            colorCode={colorCode}
-            hoverBackColor={hoverBackColor}
-            hoverColor={hoverColor}
-        ></PlayBtnStyle>
+        <Link to="">
+            <PlayBtnStyle
+                btnSize={btnSize}
+                fontSize={fontSize}
+                paddingSize={paddingSize}
+                colorCode={colorCode}
+                hoverBackColor={hoverBackColor}
+                hoverColor={hoverColor}
+            ></PlayBtnStyle>
+        </Link>
     );
 }
 

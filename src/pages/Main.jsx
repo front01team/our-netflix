@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Content from "../components/MainPage/Content";
 import ContentList from "../components/MainPage/ContentList";
 import VideoPlay from "../components/VideoPlay";
@@ -16,10 +16,27 @@ function Main() {
         setIsPicked((prev) => !prev);
     };
 
+    const [contentData, setContentData] = useState([]);
+
+    useEffect(() => {
+        fetch("/data/dataset.json")
+            .then((response) => response.json())
+            .then((data) => setContentData(data));
+    }, []);
+
+    contentData && console.log(contentData);
+
     return (
-        <div style={{ backgroundColor: "black" }}>
+        <div>
+            <Featured />
             <TopContent />
-            <ContentList />
+            {contentData &&
+                contentData.map((series, index) => (
+                    <ContentList
+                        series={series}
+                        key={`${series.category}-${index}`}
+                    />
+                ))}
         </div>
     );
 }

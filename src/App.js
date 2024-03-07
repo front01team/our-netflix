@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import React, { useState, useEffect, useReducer } from "react";
 import MyPick from "./pages/MyPick";
 import Error from "./pages/Error";
 import Main from "./pages/Main";
@@ -16,7 +17,20 @@ const router = createBrowserRouter([
     },
 ]);
 
+function reducer(state, action) {
+    switch (action.type) {
+        case "ADD":
+            return state + 1;
+        case "REMOVE":
+            return state - 1;
+        default:
+            return state;
+    }
+}
+
 function App() {
+    const [state, dispatch] = useReducer(reducer, 0);
+
     return <RouterProvider router={router} />;
 }
 

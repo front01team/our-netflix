@@ -17,6 +17,11 @@ const Background = styled.div`
     align-items: center;
     background-color: #070505;
     padding-top: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 `;
 
 const Dkdkdk = styled.div`

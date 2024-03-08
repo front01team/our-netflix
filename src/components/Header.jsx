@@ -112,7 +112,7 @@ const SearchingTool = styled.div`
 const StyledIoSearch = styled(IoSearch)`
     vertical-align: middle;
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #ffffff;
     &:hover {
         cursor: pointer;
@@ -149,7 +149,7 @@ const RightElement = styled.div`
 
 const BellIconImg = styled(FaRegBell)`
     /*알림종*/
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #ffffff;
 `;
 
@@ -162,20 +162,12 @@ const ProfileImg = styled.img`
 
 const Header = () => {
     const navigate = useNavigate();
-
-    const handleNavigatePlay = () => {
-        // navigate(`/watch/:id`, {
-        //     state: { title: title, imgPath: imgPath },
-        // });
-    };
-
     return (
         <Background>
             {/* <div> */}
             <Dkdkdk>
                 <NetflixLogo>
                     <NetflixLogoImg
-                        onClick={() => navigate("/")}
                         src="https://images.ctfassets.net/4cd45et68cgf/7LrExJ6PAj6MSIPkDyCO86/542b1dfabbf3959908f69be546879952/Netflix-Brand-Logo.png?w=700&h=456"
                         alt="Netflix_Logo_CMYK"
                     />

@@ -84,16 +84,22 @@ function Main() {
         <div>
             <Featured mainData={mainData} youtubePath={"_m9lzh0vgQE"} />
             <ContentListBox>
-                <TopContent />
+                {/* <TopContent /> */}
                 {contentData &&
                     contentData.map(
                         (series, index) =>
-                            series && (
+                            series &&
+                            (series.category.includes("TOP") ? (
+                                <TopContent
+                                    series={series}
+                                    key={`top-${series.category}-${index}`}
+                                />
+                            ) : (
                                 <ContentList
                                     series={series}
-                                    key={`${series.category}-${index}`}
+                                    key={`series-${series.category}-${index}`}
                                 />
-                            )
+                            ))
                     )}
             </ContentListBox>
         </div>

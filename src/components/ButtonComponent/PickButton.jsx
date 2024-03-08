@@ -43,10 +43,10 @@ function PickButton({
     hoverBackColor,
     hoverColor,
     isPicked,
-    handleClick,
+    setIsPicked,
 }) {
     return (
-        <div onClick={handleClick}>
+        <div onClick={() => setIsPicked((prev) => !prev)}>
             {isPicked ? (
                 <AddBtnStyle
                     btnSize={btnSize}

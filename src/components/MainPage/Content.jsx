@@ -35,8 +35,10 @@ function Content({ allData, index }) {
         });
     };
 
+    const [isPicked, setIsPicked] = useState(false);
+
     return (
-        <div onClick={handleNavigatePlay}>
+        <div>
             <div
                 className="content-Item"
                 style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
@@ -50,12 +52,26 @@ function Content({ allData, index }) {
                         <div className="item-info">
                             <div className="icons">
                                 <PlayButton
+                                    btnSize={"1.5rem"}
+                                    fontSize={"1.5rem"}
                                     title={allData?.name}
                                     imgPath={allData?.poster}
                                 />
-                                <PickButton />
-                                <LikeButton />
-                                <ArrowButton setIsModalOpen={setIsModalOpen} />
+                                <PickButton
+                                    btnSize={"1.5rem"}
+                                    fontSize={"1.5rem"}
+                                    isPicked={isPicked}
+                                    setIsPicked={setIsPicked}
+                                />
+                                <LikeButton
+                                    btnSize={"1.5rem"}
+                                    fontSize={"1.5rem"}
+                                />
+                                <ArrowButton
+                                    setIsModalOpen={setIsModalOpen}
+                                    btnSize={"1.5rem"}
+                                    fontSize={"1.5rem"}
+                                />
                             </div>
                             <div className="item-info-top">
                                 <span>

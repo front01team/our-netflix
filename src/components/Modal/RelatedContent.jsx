@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PickButton from "../ButtonComponent/PickButton";
 
 const RelatedCard = styled.div`
     width: 30%;
+    display: flex;
+    flex-direction: column;
     border-radius: 8px;
     overflow: hidden;
 
@@ -18,9 +20,7 @@ const RelatedCard = styled.div`
 
 const RelatedInfo = styled.div`
     height: 60%;
-    overflow: hidden;
     padding-bottom: 1rem;
-    position: absolute;
     padding: 1rem;
     z-index: 2;
     background-color: #333333;
@@ -43,6 +43,7 @@ const RelatedControl = styled.div`
 `;
 
 function RelatedContent({ related }) {
+    const [isPicked, setIsPicked] = useState(false);
     return (
         <RelatedCard>
             <img src={related?.related_img} alt="연관컨텐츠" />
@@ -53,7 +54,12 @@ function RelatedContent({ related }) {
                         <div>HD</div>
                         <div>2023</div>
                     </div>
-                    <PickButton size={"3rem"}></PickButton>
+                    <PickButton
+                        btnSize={"1.5rem"}
+                        fontSize={"1.5rem"}
+                        isPicked={isPicked}
+                        setIsPicked={setIsPicked}
+                    ></PickButton>
                 </RelatedControl>
                 <p>{related?.related_description}</p>
             </RelatedInfo>

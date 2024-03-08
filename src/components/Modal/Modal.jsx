@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ReactDOM from "react-dom";
 import EpisodeContent from "./EpisodeContent";
 import RelatedContent from "./RelatedContent";
+import useSearchVideo from "../../hooks/useSearchVideo";
+import { IoIosClose } from "react-icons/io";
 
 const modalWidth = {
     default: "80%",
@@ -12,25 +14,21 @@ const modalBackgroundColor = "#181818";
 const modalTextColor = "#d2d2d2";
 
 const ModalContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    height: 950px;
     top: 0;
     left: 0;
     z-index: 5;
-`;
-
-const ModalMask = styled.div`
-    width: 100%;
-    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const DetailModal = styled.div`
     width: 70%;
-    height: 100vh;
+    height: 100%;
     position: fixed;
-    top: 2rem;
+    top: 1.5rem;
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 12px;
@@ -42,7 +40,6 @@ const DetailModal = styled.div`
     color: ${modalTextColor};
 
     max-width: ${modalWidth.default};
-
     @media screen and (max-width: 768px) {
         max-width: ${modalWidth.smallScreen};
     }
@@ -50,19 +47,13 @@ const DetailModal = styled.div`
     z-index: 50;
 `;
 
-const ModalContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0.5rem 3rem;
-    gap: 2rem;
-`;
-
 const ModalHeader = styled.div`
     width: 100%;
     height: 50%;
     padding-bottom: 1rem;
-    img {
+
+    img,
+    iframe {
         width: 100%;
         height: 100%;
         border-radius: 12px 12px 0 0;
@@ -72,10 +63,17 @@ const ModalHeader = styled.div`
     div {
         width: 100%;
         background: linear-gradient(0deg, #181818, 50%);
-        background-color: white;
         position: absolute;
         top: 0;
     }
+`;
+
+const ModalContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 3rem;
+    gap: 2rem;
 `;
 
 const ModalInfoBox = styled.div`
@@ -120,22 +118,91 @@ const ModalRelatedBox = styled.div`
     }
 `;
 
-const ModalFooter = styled.div``;
+const CoverUp = styled.div`
+    position: absolute;
+    background-color: #181818;
+    width: 100%;
+    height: 1.5rem;
+    z-index: 100;
+    top: 0;
+`;
+
+const CoverBottom = styled.div`
+    position: absolute;
+    background-color: #181818;
+    width: 100%;
+    height: 1rem;
+    z-index: 3;
+    bottom: 100;
+`;
+const CoverLeft = styled.div`
+    position: absolute;
+    background-color: #181818;
+    width: 100%;
+    height: 1rem;
+    z-index: 3;
+`;
+const CoverRight = styled.div`
+    position: absolute;
+    background-color: #181818;
+    width: 100%;
+    height: 1rem;
+    z-index: 3;
+`;
+
+const CloseButton = styled(IoIosClose)`
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3.2rem;
+    color: white;
+    z-index: 100;
+    background-color: #141414;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+        background-color: gray;
+    }
+    &:active {
+        border: 2px solid white;
+    }
+`;
+
+const ModalFooter = styled.div`
+    padding: 0.5rem 3rem;
+    margin-bottom: 3rem;
+`;
 
 const Backdrop = ({ setIsModalOpen }) => {
     return (
-        <ModalContainer onClick={() => setIsModalOpen(false)}>
-            <ModalMask />
-        </ModalContainer>
+        <div>
+            <ModalContainer
+                onClick={() => setIsModalOpen(false)}
+            ></ModalContainer>
+        </div>
     );
 };
 
 const Overlay = ({ setIsModalOpen, allData }) => {
+    const youtubePath = useSearchVideo(allData?.name);
     return (
         <DetailModal>
-            <button onClick={() => setIsModalOpen(false)}></button>
+            <CloseButton onClick={() => setIsModalOpen(false)}></CloseButton>
             <ModalHeader>
-                <img src={allData?.poster} alt="poster" />
+                {youtubePath ? (
+                    <>
+                        {/* <CoverUp />
+                        <CoverBottom />
+                        <CoverLeft />
+                        <CoverRight /> */}
+                        <iframe
+                            frameBorder="0"
+                            src={`https://www.youtube.com/embed/${youtubePath}?controls=0&autoplay=1&loop=1&mute=1&playlist=${youtubePath}`}
+                        ></iframe>
+                    </>
+                ) : (
+                    <img src={allData?.poster} alt="poster" />
+                )}
                 <div></div>
             </ModalHeader>
             <ModalContent>
@@ -186,6 +253,19 @@ const Overlay = ({ setIsModalOpen, allData }) => {
                             ))}
                     </div>
                 </ModalRelatedBox>
+
+                <ModalFooter>
+                    <h1>${allData?.name} 상세 정보</h1>
+                    {allData.length !== 0 &&
+                        allData.movie_info.map((script, index) => (
+                            <div key={`info-${index}`}>
+                                <span style={{ color: "gray" }}>
+                                    {script.split(":")[0]}:
+                                </span>
+                                <span>{script.split(":")[1]}</span>
+                            </div>
+                        ))}
+                </ModalFooter>
             </ModalContent>
         </DetailModal>
     );

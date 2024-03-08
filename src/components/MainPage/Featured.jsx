@@ -8,8 +8,6 @@ const FeaturedStyled = styled.div`
     position: relative;
     margin-bottom: 110px;
 
-    margin-top: 30px;
-
     iframe {
         width: 100%;
         height: 100%;

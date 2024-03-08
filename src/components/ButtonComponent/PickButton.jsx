@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import styled, { css } from "styled-components";
 import { IoAddOutline } from "react-icons/io5";
 import { IoMdCheckmark } from "react-icons/io";
@@ -36,38 +36,43 @@ const PickedBtnStyle = styled(IoMdCheckmark)`
 `;
 
 function PickButton({
-  btnSize,
-  fontSize,
-  paddingSize,
-  colorCode,
-  hoverBackColor,
-  hoverColor,
-  isPicked,
-  setIsPicked,
+    btnSize,
+    fontSize,
+    paddingSize,
+    colorCode,
+    hoverBackColor,
+    hoverColor,
+    isPicked,
+    setIsPicked,
+    name,
 }) {
-  return (
-    <div onClick={() => setIsPicked((prev) => !prev)}>
-      {isPicked ? (
-        <AddBtnStyle
-          btnSize={btnSize}
-          fontSize={fontSize}
-          paddingSize={paddingSize}
-          colorCode={colorCode}
-          hoverBackColor={hoverBackColor}
-          hoverColor={hoverColor}
-        ></AddBtnStyle>
-      ) : (
-        <PickedBtnStyle
-          btnSize={btnSize}
-          fontSize={fontSize}
-          paddingSize={paddingSize}
-          colorCode={colorCode}
-          hoverBackColor={hoverBackColor}
-          hoverColor={hoverColor}
-        ></PickedBtnStyle>
-      )}
-    </div>
-  );
+    return (
+        <div
+            onClick={() => {
+                setIsPicked((prev) => !prev);
+            }}
+        >
+            {isPicked ? (
+                <AddBtnStyle
+                    btnSize={btnSize}
+                    fontSize={fontSize}
+                    paddingSize={paddingSize}
+                    colorCode={colorCode}
+                    hoverBackColor={hoverBackColor}
+                    hoverColor={hoverColor}
+                ></AddBtnStyle>
+            ) : (
+                <PickedBtnStyle
+                    btnSize={btnSize}
+                    fontSize={fontSize}
+                    paddingSize={paddingSize}
+                    colorCode={colorCode}
+                    hoverBackColor={hoverBackColor}
+                    hoverColor={hoverColor}
+                ></PickedBtnStyle>
+            )}
+        </div>
+    );
 }
 
 export default PickButton;

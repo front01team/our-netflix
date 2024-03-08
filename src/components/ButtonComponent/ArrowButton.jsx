@@ -33,16 +33,19 @@ function ArrowButton({
     colorCode,
     hoverBackColor,
     hoverColor,
+    setIsModalOpen,
 }) {
     return (
-        <ArrowBtnStyle
-            btnSize={btnSize}
-            fontSize={fontSize}
-            paddingSize={paddingSize}
-            colorCode={colorCode}
-            hoverBackColor={hoverBackColor}
-            hoverColor={hoverColor}
-        ></ArrowBtnStyle>
+        <div onClick={() => setIsModalOpen(true)}>
+            <ArrowBtnStyle
+                btnSize={btnSize}
+                fontSize={fontSize}
+                paddingSize={paddingSize}
+                colorCode={colorCode}
+                hoverBackColor={hoverBackColor}
+                hoverColor={hoverColor}
+            ></ArrowBtnStyle>
+        </div>
     );
 }
 

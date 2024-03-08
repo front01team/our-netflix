@@ -104,21 +104,11 @@ const ModalRelatedBox = styled.div`
 
 const ModalFooter = styled.div``;
 
-function ModalMain() {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        fetch("/data/dataset.json")
-            .then((response) => response.json())
-            .then((data) => setData(data?.[0].all_data[0]));
-    }, []);
-
-    data && console.log(data);
-
+function ModalMain({ allData }) {
     return (
         <DetailModal>
             <ModalHeader>
-                <img src={data.poster} alt="poster" />
+                <img src={allData?.poster} alt="poster" />
                 <div></div>
             </ModalHeader>
             <ModalContent>
@@ -126,15 +116,15 @@ function ModalMain() {
                     <ModalInfoLeft>
                         <div>
                             <span>98% 일치</span>
-                            <span>{data.year}</span>
-                            <span>{data.all_episode}</span>
+                            <span>{allData?.year}</span>
+                            <span>{allData?.all_episode}</span>
                         </div>
                         <h2>오늘의 TOP 영상 5위</h2>
-                        <div>{data.description}</div>
+                        <div>{allData?.description}</div>
                     </ModalInfoLeft>
                     <ModalInfoRight>
-                        {data.length !== 0 &&
-                            data.movie_info.map((script) => (
+                        {allData.length !== 0 &&
+                            allData.movie_info.map((script) => (
                                 <div>
                                     <span style={{ color: "gray" }}>
                                         {script.split(":")[0]}:
@@ -147,8 +137,8 @@ function ModalMain() {
 
                 <ModalEpisodeBox>
                     <h2>회차</h2>
-                    {data.length !== 0 &&
-                        data.episode_detail.map((episode, index) => (
+                    {allData.length !== 0 &&
+                        allData.episode_detail.map((episode, index) => (
                             <EpisodeContent episode={episode} index={index} />
                         ))}
                 </ModalEpisodeBox>
@@ -156,8 +146,8 @@ function ModalMain() {
                 <ModalRelatedBox>
                     <h2>함께 시청된 콘텐츠</h2>
                     <div>
-                        {data.length !== 0 &&
-                            data.related_detail.map((related) => (
+                        {allData.length !== 0 &&
+                            allData.related_detail.map((related) => (
                                 <RelatedContent related={related} />
                             ))}
                     </div>

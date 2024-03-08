@@ -1,25 +1,8 @@
-import React, { useState, useEffect } from "react";
-import useSearchVideo from "../hooks/useSearchVideo";
+import { useState, useEffect } from "react";
 
-function VideoPlay({ title, videoPath }) {
-    const pathState = useSearchVideo(title);
-    const youtubePath = videoPath || pathState;
-
-    return (
-        <div>
-            {youtubePath && (
-                <iframe
-                    frameBorder="0"
-                    src={`https://www.youtube.com/embed/${youtubePath}?controls=0&autoplay=1&loop=1&mute=1&playlist=${youtubePath}`}
-                ></iframe>
-            )}
-        </div>
-    );
-}
-
-export default VideoPlay;
-/*
+function useSearchVideo(initialForm) {
     const [youtubePath, setYoutubePath] = useState("");
+    const title = initialForm;
 
     const searchData = async () => {
         const options = {
@@ -52,5 +35,9 @@ export default VideoPlay;
     useEffect(() => {
         searchData();
         console.log(youtubePath);
-    }, []
-    */
+    }, []);
+
+    return youtubePath;
+}
+
+export default useSearchVideo;

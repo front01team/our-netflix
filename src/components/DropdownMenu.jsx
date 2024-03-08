@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import useDetectClose from "./hooks/useDetectClose";
+import useDetectClose from "../hooks/useDetectClose";
 import { MdArrowDropDown } from "react-icons/md";
 import { PiPencilDuotone } from "react-icons/pi";
 

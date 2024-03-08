@@ -1,6 +1,6 @@
 .top-content-list {
     display: flex;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     overflow: hidden;
     position: relative;
 }
@@ -39,11 +39,13 @@
 
 .category-list {
     position: absolute;
-    top: 75%;
+    top: 80%;
     left: 0;
     width: 100%;
-    padding: 50px 50px;
+    /* padding: 50px 50px; */
     color: white;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .category-title {

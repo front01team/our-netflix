@@ -5,7 +5,6 @@ import ArrowButton from "../ButtonComponent/ArrowButton";
 import LikeButton from "../ButtonComponent/LikeButton";
 import PickButton from "../ButtonComponent/PickButton";
 import PlayButton from "../ButtonComponent/PlayButton";
-import ModalMain from "../Modal/ModalMain";
 import VideoPlay from "../VideoPlay";
 import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";

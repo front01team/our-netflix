@@ -1,77 +1,76 @@
 .top-content-list {
-    display: flex;
-    /* margin-bottom: 30px; */
-    overflow: hidden;
-    position: relative;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
 .top-content {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 200px;
-    height: 160px;
-    margin-right: 70px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  height: 160px;
+  margin-right: 70px;
 }
 
 .top-content > svg {
-    border: 1px solid transparent;
-    margin: 0 -1px;
-    overflow: visible;
-    transform: scale(1);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 65%;
-    width: 40%;
-    height: auto;
+  border: 1px solid transparent;
+  margin: 0 -1px;
+  overflow: visible;
+  transform: scale(1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 65%;
+  width: 40%;
+  height: auto;
 }
 
 .top-content > img {
-    width: 106px;
-    height: 155px;
-    border-radius: 4px;
-    position: absolute;
-    top: 5%;
-    bottom: 0;
-    left: 50%;
+  width: 106px;
+  height: 155px;
+  border-radius: 4px;
+  position: absolute;
+  top: 5%;
+  bottom: 0;
+  left: 50%;
 }
 
 .category-list {
-    position: absolute;
-    top: 80%;
-    left: 0;
-    width: 100%;
-    /* padding: 50px 50px; */
-    color: white;
-    padding-bottom: 0;
-    margin-bottom: 0;
+  position: absolute;
+  top: 78%;
+  left: 0;
+  width: 100%;
+  /* padding: 50px 50px; */
+  color: white;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .category-title {
-    font-size: 20px;
-    font-weight: 900;
-    color: white;
-    padding: 15px 0;
+  font-size: 20px;
+  font-weight: 900;
+  color: white;
+  padding: 15px 0;
 }
 
 .content-list {
-    display: flex;
-    margin-bottom: 30px;
+  display: flex;
+  margin-bottom: 30px;
 }
 
 .content {
-    padding: 4px;
+  padding: 4px;
 }
 
 .content:hover {
-    transform: scale(1.5);
-    transition: 0.3s;
-    transition-delay: 0.4s;
+  transform: scale(1.5);
+  transition: 0.3s;
+  transition-delay: 0.4s;
 }
 
 .content > img {
-    width: 210px;
-    height: 118px;
-    border-radius: 4px;
+  width: 210px;
+  height: 118px;
+  border-radius: 4px;
 }

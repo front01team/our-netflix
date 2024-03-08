@@ -27,7 +27,7 @@ function ContentList({ series }) {
 
     return (
         <div className="list">
-            <div className="list-title">{series.category}</div>
+            <h className="list-title">{series.category}</h>
             <div className="wrapper">
                 <div
                     className="sliderArrow left"

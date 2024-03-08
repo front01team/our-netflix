@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import styled, { css } from "styled-components";
 import { IoAddOutline } from "react-icons/io5";
 import { IoMdCheckmark } from "react-icons/io";
@@ -44,9 +44,14 @@ function PickButton({
     hoverColor,
     isPicked,
     setIsPicked,
+    name,
 }) {
     return (
-        <div onClick={() => setIsPicked((prev) => !prev)}>
+        <div
+            onClick={() => {
+                setIsPicked((prev) => !prev);
+            }}
+        >
             {isPicked ? (
                 <AddBtnStyle
                     btnSize={btnSize}

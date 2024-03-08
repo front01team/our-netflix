@@ -4,6 +4,7 @@ import { AiFillAlert } from "react-icons/ai";
 import styled from "styled-components";
 import { FaRegBell } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 import DropdownMenu from "./DropdownMenu";
 
@@ -21,7 +22,7 @@ const Background = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
 `;
 
 const Dkdkdk = styled.div`
@@ -111,7 +112,7 @@ const SearchingTool = styled.div`
 const StyledIoSearch = styled(IoSearch)`
     vertical-align: middle;
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #ffffff;
     &:hover {
         cursor: pointer;
@@ -148,7 +149,7 @@ const RightElement = styled.div`
 
 const BellIconImg = styled(FaRegBell)`
     /*알림종*/
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #ffffff;
 `;
 
@@ -160,6 +161,7 @@ const ProfileImg = styled.img`
 `;
 
 const Header = () => {
+    const navigate = useNavigate();
     return (
         <Background>
             {/* <div> */}
@@ -172,11 +174,13 @@ const Header = () => {
                 </NetflixLogo>
 
                 <LeftMenuBar>
-                    <LeftElement>홈</LeftElement>
+                    <LeftElement onClick={() => navigate("/")}>홈</LeftElement>
                     <LeftElement>시리즈</LeftElement>
                     <LeftElement>영화</LeftElement>
                     <LeftElement>NEW! 요즘 대세 콘텐츠</LeftElement>
-                    <LeftElement>내가 찜한 리스트</LeftElement>
+                    <LeftElement onClick={() => navigate("/mypick")}>
+                        내가 찜한 리스트
+                    </LeftElement>
                     <LeftElement>언어별로 찾아보기</LeftElement>
                 </LeftMenuBar>
             </Dkdkdk>

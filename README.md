@@ -52,15 +52,17 @@
 
 <!-- 프로젝트 세부 내용 -->
 # Detail
-<p align="center">
-  <img height="350px" src="https://github.com/front01team/our-netflix/assets/111291076/a6a3d817-b2b2-490c-b727-6c023476bd94"/>
-  <img height="350px" alt="스크린샷 2024-05-18 오후 9 30 36" src="https://github.com/front01team/our-netflix/assets/111291076/695b4e10-8bdd-44a5-a965-c236dbc0ab6a">
-</p>
 
-<p align="center">
-  <img width="40%" src="https://github.com/front01team/our-netflix/assets/111291076/a6a3d817-b2b2-490c-b727-6c023476bd94"/>
-  <img width="60%" alt="스크린샷 2024-05-18 오후 9 30 36" src="https://github.com/front01team/our-netflix/assets/111291076/695b4e10-8bdd-44a5-a965-c236dbc0ab6a">
-</p>
+
+<div align="center">
+<table>
+  <tr>
+    <td><img src="https://github.com/front01team/our-netflix/assets/111291076/a6a3d817-b2b2-490c-b727-6c023476bd94" alt="Image 1" height="300" /></td>
+    <td><img src="https://github.com/front01team/our-netflix/assets/111291076/695b4e10-8bdd-44a5-a965-c236dbc0ab6a" alt="Image 2" height="300" /></td>
+  </tr>
+</table>
+</div>
+
 
 1. Header & Footer  
    * useNavigate를 이용해 메뉴 링크  
